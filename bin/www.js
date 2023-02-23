@@ -3,11 +3,9 @@
 /**
  * Module dependencies.
  */
-
-import app from '../app'
+import app from '../app.js'
 import debug from 'debug';
-//const debug = require('debug')('sprint-1-back:server');
-import debug from 'debug, sprint-1-back:server'
+const logger = debug('sprint-1-back:server')
 import http from 'http'
 
 /**
@@ -27,7 +25,7 @@ const server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, ()=> console.log('Server ready on port ' + port));
 server.on('error', onError);
 server.on('listening', onListening);
 
@@ -88,5 +86,5 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  logger('Listening on ' + bind);
 }
