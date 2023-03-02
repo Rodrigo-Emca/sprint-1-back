@@ -1,6 +1,6 @@
 import express from 'express'
 import controller from '../controllers/auth/auth.js';
-import postSchema from '../schemas/users.js'
+import postSchemaSignUp from '../schemas/usersSignUp.js'
 import validator from '../middlewares/validator.js';
 import accountExistsSignUp from '../middlewares/accountExistsSignUp.js'
 
@@ -25,7 +25,7 @@ router.get('/', (req, res, next) => {
 //POST auths listing:
 
 router.post('/signup', 
-  validator(postSchema),
+  validator(postSchemaSignUp),
   accountExistsSignUp,
   sign_up
 )

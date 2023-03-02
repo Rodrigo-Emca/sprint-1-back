@@ -17,6 +17,15 @@ const schema = Joi.object({
             'string.empty': 'No se ha ingresado ningún mail.',
             'string.email': 'El mail ingresado es inválido.'
         }),
+    photo: Joi
+        .string()
+        .required()
+        .uri()
+        .messages({
+            'any.required': 'Se requiere una imágen',
+            'string.empty': 'Se requiere una imágen',
+            'string.uri':'URL inválida'
+        }),
     password: Joi
         .string()
         .required()
