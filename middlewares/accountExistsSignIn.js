@@ -1,11 +1,11 @@
 import User from '../models/User.js'
 
 async function accountExistsSignIn(req,res,next) {
-    const user = await User.findOne({mail: req.body.mail})
+    const user = await User.findOne({email: req.body.email})
     if (user) {
         req.user = {
             id: user._id,
-            mail: user.mail,
+            email: user.email,
             photo: user.photo,
             password: user.password,
             is_admin: user.is_admin,
@@ -18,8 +18,7 @@ async function accountExistsSignIn(req,res,next) {
     // return res.status(400).send('¡El usuario no existe!')
     return res.status(400).json({
         success: false,
-        message: '¡El usuario no existe!',
-        data: user
+        message: '¡Credenciales incorrectas!' //Usamos el mismo mensaje para proteger mail/contraseña del usuario.
         })
 }
 

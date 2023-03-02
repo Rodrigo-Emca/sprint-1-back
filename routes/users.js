@@ -4,6 +4,7 @@ import postSchemaSignUp from '../schemas/usersSignUp.js'
 import validator from '../middlewares/validator.js';
 import accountExistsSignUp from '../middlewares/accountExistsSignUp.js'
 
+import postSchemaSignIn from '../schemas/usersSignIn.js'
 import accountExistsSignIn from '../middlewares/accountExistsSignIn.js'
 import accountHasBeenVerified from '../middlewares/accountHasBeenVerified.js'
 import passwordIsOk from '../middlewares/passwordIsOk.js'
@@ -31,15 +32,15 @@ router.post('/signup',
 )
 
 router.post('/signin', 
-  //validator(postSchema),
-  //accountExistsSignIn,
-  //accountHasBeenVerified,
-  //passwordIsOk,
-  //sign_in
+  validator(postSchemaSignIn),
+  accountExistsSignIn,
+  accountHasBeenVerified,
+  passwordIsOk,
+  sign_in
 )
 
 router.post('/signout',
-  // signout
+  sign_out
 )
 
 export default router
