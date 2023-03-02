@@ -9,12 +9,11 @@ import accountExistsSignIn from '../middlewares/accountExistsSignIn.js'
 import accountHasBeenVerified from '../middlewares/accountHasBeenVerified.js'
 import passwordIsOk from '../middlewares/passwordIsOk.js'
 
+import passport from '../middlewares/passport.js'
+
 let router = express.Router();
 
 const {sign_up, sign_in, sign_out} = controller
-
-// import create_controller from '../controllers/users/create.js'
-// const {create} = create_controller
 
 /* GET users listing. */
 router.get('/', (req, res, next) => {
@@ -40,6 +39,7 @@ router.post('/signin',
 )
 
 router.post('/signout',
+  passport.authenticate('jwt',{session:false}),
   sign_out
 )
 
