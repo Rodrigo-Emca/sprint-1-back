@@ -8,6 +8,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.use('/users', userRouter)
+router.use('/auth', userRouter)
 
 export default router

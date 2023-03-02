@@ -1,34 +1,27 @@
 import express from 'express'
-import User from '../models/User.js';
+import controller from '../controllers/auth/auth.js';
+import postSchema from '../schemas/users.js'
+import validator from '../middlewares/validator.js';
+import accountExistsSignUp from '../middlewares/accountExistsSignUp.js'
+
 let router = express.Router();
+
+const {sign_up} = controller
+
+// import create_controller from '../controllers/users/create.js'
+// const {create} = create_controller
 
 /* GET users listing. */
 router.get('/', (req, res, next) => {
   return res
-    .send('respond with a resource')
+    .send('Aqui deberían aparecer todos los usuarios.')
     .status(200)
 });
 
-router.post('/', 
-  async (req, res) =>{
-    try {
-        req.body.photo = false;
-        req.body.is_online = false;
-        req.body.is_admin = false;
-        req.body.is_author = false;
-        req.body.is_company = false;
-        req.body.is_verified = false;
-        req.body.verify_code = false;
-        let user = await User.create(req.body)
-        return res.status(201).json({
-          success: true, 
-          message: "Usuario creado correctamente."
-        })
-    } catch(error){
-      console.log(error)
-      return res.status(400).send("No se pudo crear el usuario.")
-    }
-  }
+router.post('/signup', 
+  validator(postSchema),
+  accountExistsSignUp,
+  sign_up
 )
 
 export default router
