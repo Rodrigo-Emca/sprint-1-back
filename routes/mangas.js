@@ -2,31 +2,24 @@ import express from "express";
 import mangaCreate from '../schemas/mangaCreate.js'
 import Manga from '../models/Manga.js'
 import validator from '../middlewares/validator.js'
+import validator_title from '../middlewares/mangas/exists_title.js'
+
+import create_manga from '../controllers/mangas/createManga.js'
+import read_all_manga  from '../controllers/mangas/read_allManga.js'
+import categories_manga from '../controllers/categories/all.js'
+
+const { create } = create_manga
+const { read_all } = read_all_manga
+const { all } = categories_manga
 
 let router = express.Router();
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.status(200).send("nuevo Manga");
-});
-router.post("/", validator(mangaCreate),
-  async (req, res) => {
-    try {
-      req.body.author_id = "63fe8112f09373806fd89fe5"
+router.get("/", read_all);
+router.post("/", validator(mangaCreate),validator_title,create)
 
-      let manga = await Manga.create(req.body);
-      return res.status(201).json({
-        success: true,
-        message: "se creo un nuevo manga",
-
-      });
-    } catch (err) {
-      console.log(err);
-      return res.status(400).json({
-        success: false,
-        message: "no se pudo crear un manga",
-      });
-    }
-  });
+//routes/categories.js
+router.get('/all',all)
+ 
 
 export default router;
