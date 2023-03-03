@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import validator from '../middlewares/authors/validator.js';
 
 const authorSchema = new mongoose.Schema(
   {
@@ -12,11 +13,21 @@ const authorSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    city: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     country: {
       type: String,
       required: true,
       trim: true,
     },
+    birthdate: {
+      type: Date,
+      required: true,
+    },
+
     profileImage: {
       type: String,
       required: true,
@@ -24,8 +35,8 @@ const authorSchema = new mongoose.Schema(
     },
     active: {
       type: Boolean,
-      required: true,
-      default: true,
+     required: true,
+     default: true,
     },
     //createdBy: {
       //type: mongoose.Schema.Types.ObjectId,
