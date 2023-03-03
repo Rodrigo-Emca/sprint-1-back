@@ -13,6 +13,7 @@ const controller = {
         catch(err){
             console.log(err)
             return res.status(400).send('Could not create chapter')
+            // En caso de error, mostrarlo con manejo de errores de middleware
         }
     }
 }
