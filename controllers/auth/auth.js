@@ -55,12 +55,27 @@ const controller = {
             { is_online: false },
             { new: true }
             )
-            return res.status(200).send('¡Usuario offline!')
+            //return res.status(200).send('¡Usuario offline!')
+            return res.status(200).json({
+                success: true,
+                message: '¡Usuario offline!',
+            })
         } catch (error) {
             next(error)
         }
-        }
+        },
 
+    signintoken: async (req, res, next) => {
+        let { user } = req
+        try {
+            req.body.success = true
+            req.body.sc = 200
+            req.body.data = { user }
+            return defaultResponse(req,res)
+        } catch (error) {
+            next(error)
+        }
+    },
 }
 
 export default controller
