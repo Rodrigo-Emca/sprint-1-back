@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import validator from '../middlewares/authors/validator.js';
+
 
 const authorSchema = new mongoose.Schema(
   {
