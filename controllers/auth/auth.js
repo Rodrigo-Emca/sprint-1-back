@@ -15,7 +15,10 @@ const controller = {
         req.body.password = bcryptjs.hashSync(req.body.password, 10)
         try {
             await User.create(req.body)
-            return res.status(200).send('¡Usuario registrado!')
+            return res.status(200).json({
+                success: true,
+                message: '¡Usuario registrado!'
+            })
         } catch (error) {
             console.log(error)
             next(error)
@@ -25,17 +28,16 @@ const controller = {
     sign_in: async (req, res, next) => {
         try {
             let user = await User.findOneAndUpdate(
-                { email: req.user.email }, //parametro de busqueda
-                { is_online: true }, //parámetro a modificar
-                { new: true } //para que devuelva el objeto modificado
+                { email: req.user.email },
+                { is_online: true },
+                { new: true }
             )
-            user.password = null //para proteger la contraseña
+            user.password = null
             const token = jsonwebtoken.sign(
-                {id: user._id}, //datos a encriptar
-                process.env.SECRET, //llave para encriptar/desencriptar
-                {expiresIn: 60*60*24*7} //tiempo que dura el token
+                {id: user._id},
+                process.env.SECRET,
+                {expiresIn: 60*60*24*7}
                 )
-            //return res.status(200).send('¡Usuario online!')
             return res.status(200).json({
                 success: true,
                 message: '¡Usuario online!',
@@ -55,7 +57,6 @@ const controller = {
             { is_online: false },
             { new: true }
             )
-            //return res.status(200).send('¡Usuario offline!')
             return res.status(200).json({
                 success: true,
                 message: '¡Usuario offline!',

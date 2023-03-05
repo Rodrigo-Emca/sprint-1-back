@@ -15,10 +15,9 @@ async function accountExistsSignIn(req,res,next) {
         }
     return next()
     }
-    // return res.status(400).send('¡El usuario no existe!')
     return res.status(400).json({
         success: false,
-        message: '¡Credenciales incorrectas!' //Usamos el mismo mensaje para proteger mail/contraseña del usuario.
+        message: '¡Credenciales incorrectas!'
         })
 }
 
