@@ -1,7 +1,7 @@
 import express from 'express';
-import createAuthor from '../controllers/authors/create.js';
+import createAuthor from '../controller/author.controller.js';
 import Author from '../models/Author.js';
-import is_active from '../middlewares/authors/is_active.js'; // importar el middleware
+import is_active from '../middleware/author/is_active.js'; // importar el middleware
 
 const router = express.Router();
 

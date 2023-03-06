@@ -11,7 +11,7 @@ const schema = Joi.object({
             'string.max': 'El titulo debe tener menos de 30 caracteres'
         }),
     order:Joi
-        .number(),
+        .any(),
     pages: Joi
         .string()
         .required()
@@ -19,13 +19,6 @@ const schema = Joi.object({
         .messages({
             'string.min': 'la página debe contener al menos un caracter'
         }),
-    cover_photo:Joi
-        .string()
-        .required()
-        .uri()
-        .messages({
-            'string.uri': 'la foto se debe ingresar como URL'
-        })
 })
 
 export default schema
