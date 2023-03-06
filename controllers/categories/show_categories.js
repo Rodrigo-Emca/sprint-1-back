@@ -1,15 +1,16 @@
-//import Manga from '../../models/Manga.js'
-//import categories from '../../models/data/categories.js'
-//ESTE CONTROLADOR LO PASO IGNACIO!!! PERO NOSE COMO USARLO :(
+import Category from "../../models/Category.js"
+
 const controller = {
-    all: async(req,res,next)=> {
-        try {
+    
+    show: async(req,res,next)=> {
+         try {
             let all = await Category.find()
             if (all) {
                 return res.status(200).json({
                     success: true,
                     message: "All categories",
-                    categories: all
+                   // categories: all.map(x => x.name)///pendiente!!
+                   categories: all
                 })
             } else {
                 return res.status(200).json({
@@ -25,9 +26,3 @@ const controller = {
 }
 
 export default controller
-
-
-/* 
-routes/categories.js
-router.get('/',all)
-*/

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+/* import mongoose from "mongoose";
 
 let schema = new mongoose.Schema(
   {
@@ -16,7 +16,7 @@ let schema = new mongoose.Schema(
 
 let Manga = mongoose.model("manga", schema);
 
-export default Manga;
+export default Manga; */
 
 /* 
 "author_id": "",
@@ -26,3 +26,23 @@ export default Manga;
 "description": "xxxxx",
 "category_id": ""
 */
+
+import mongoose from "mongoose";
+
+let schema = new mongoose.Schema(
+  {
+    title: { type: String, required: true},
+    description: { type: String, required: true },
+    cover_photo: { type: String, required: true },
+    author_id: { type: String, required: true,  ref: "authors" },
+    company_id: { type: String,  ref: "companies" },
+    category_id: { type: String, required: true,  ref: "categories" },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+let Manga = mongoose.model("mangas", schema);
+
+export default Manga;

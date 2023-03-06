@@ -1,25 +1,22 @@
-import express from "express";
+import express from 'express'
+import mostrar_categoriescontroller from '../controllers/categories/show_categories.js'
 import mangaCreate from '../schemas/mangaCreate.js'
-import Manga from '../models/Manga.js'
 import validator from '../middlewares/validator.js'
 import validator_title from '../middlewares/mangas/exists_title.js'
+//import is_active from '../middlewares/authors/is_active.js' //MIDDLEWARE M06
+//import is_property_of from '../middlewares/authors/is_property_of.js' //MIDDLEWARE M06
 
 import create_manga from '../controllers/mangas/createManga.js'
-import read_all_manga  from '../controllers/mangas/read_allManga.js'
-import categories_manga from '../controllers/categories/all.js'
 
-const { create } = create_manga
-const { read_all } = read_all_manga
-const { all } = categories_manga
 
 let router = express.Router();
+const { show } = mostrar_categoriescontroller
+const { create } = create_manga
 
-/* GET users listing. */
-router.get("/", read_all);
+
+
+router.get("/", show)
+//router.post("/", validator(mangaCreate),validator_title,is_active,is_property_of,create) //RUTA CON VALIDADOR DEL M06
 router.post("/", validator(mangaCreate),validator_title,create)
-
-//routes/categories.js
-router.get('/all',all)
- 
 
 export default router;

@@ -1,6 +1,6 @@
 import userRouter from './users.js'
 import authorRouter from './authors.js';
-
+import mangaRouter from './mangas.js'
 
 import express from 'express';
 let router = express.Router();
@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
 
 router.use('/users', userRouter)
 router.use('/api/authors', authorRouter);
+router.use('/mangas', mangaRouter)
 
 
 export default router
