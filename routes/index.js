@@ -16,5 +16,6 @@ router.use('/users', userRouter)
 router.use('/chapters', chaptersRouter)
 router.use('/api/authors', authorRouter);
 
+router.use('/auth', userRouter)
 
 export default router
