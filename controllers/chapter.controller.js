@@ -3,7 +3,6 @@ import Chapter from "../models/Chapter.js"
 const controller = {
     create: async (req, res)=>{
         try{
-            req.body.manga_id = '63ffafade652fa554fe009eb'
             let controller = await Chapter.create(req.body)
             return res.status(201).json({
                 success: true, 
