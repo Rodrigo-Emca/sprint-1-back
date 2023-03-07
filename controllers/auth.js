@@ -41,7 +41,10 @@ const controller = {
             return res.status(200).json({
                 success: true,
                 message: '¡Usuario online!',
-                data: token
+                name: req.user.name, 
+                email: req.user.email, 
+                photo: req.user.photo,
+                token: token
             })
         } catch (error) {
         next(error)

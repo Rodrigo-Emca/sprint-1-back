@@ -4,6 +4,7 @@ async function accountExistsSignIn(req,res,next) {
     const user = await User.findOne({email: req.body.email})
     if (user) {
         req.user = {
+            name: user.name,
             id: user._id,
             email: user.email,
             photo: user.photo,
