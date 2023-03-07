@@ -43,30 +43,4 @@ router.post('/', async (req, res) => {
   }
 });
 
-// UPDATE a manga
-router.put('/:id', isPropertyOf, async (req, res) => {
-  try {
-    const manga = await Manga.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    if (!manga) return res.status(404).json({ message: 'Manga not found' });
-    res.status(200).json(manga);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: 'Error updating manga' });
-  }
-});
 
-// DELETE a manga
-router.delete('/:id', isPropertyOf, async (req, res) => {
-  try {
-    const manga = await Manga.findByIdAndDelete(req.params.id);
-    if (!manga) return res.status(404).json({ message: 'Manga not found' });
-    res.status(200).json({ message: 'Manga deleted' });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: 'Error deleting manga' });
-  }
-});
-
-export default router;
