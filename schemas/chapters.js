@@ -7,8 +7,9 @@ const schema = Joi.object({
         .min(5)
         .max(30)
         .messages({
-            'string.min': 'El título debe tener al menos 5 caracteres',
-            'string.max': 'El titulo debe tener menos de 30 caracteres'
+            'string.min': 'the title must be at least 4 characteres',
+            'string.empty': 'the title cannot be empty',
+            'string.required': 'the title is required',
         }),
     order:Joi
         .any(),
@@ -16,8 +17,10 @@ const schema = Joi.object({
         .string()
         .required()
         .min(1)
+        .uri()
         .messages({
-            'string.min': 'la página debe contener al menos un caracter'
+            'any.required': 'the pages have to be url',
+            'string.empty': 'the pages cannot be empty'
         }),
 })
 
