@@ -12,7 +12,7 @@ const schema = Joi.object({
             'string.required': 'the title is required',
         }),
     order:Joi
-        .any(),
+        .number(),
     pages: Joi
         .string()
         .required()
