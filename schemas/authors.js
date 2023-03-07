@@ -6,7 +6,7 @@ const schema = Joi.object({
     city: Joi.string().required(),
     country: Joi.string().required(),
     birthdate: Joi.date().required(),
-    profileImage: Joi.string().required()
+    imageUrl: Joi.string().required()
 })
 
 export default schema;
