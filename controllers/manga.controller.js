@@ -1,4 +1,4 @@
-import Manga from '../../models/Manga.js'
+import Manga from '../models/Manga.js'
 
 const controller = {
   create: async (req, res) => {
@@ -18,7 +18,7 @@ const controller = {
         message: "no se pudo crear un manga",
       });
     }
-  }
+  } 
 
 }
 

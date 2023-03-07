@@ -8,7 +8,6 @@ const router = express.Router();
 router.post('/', /*is_active,*/ async (req, res) => {
   try {
     const { name, birthdate, lastName, profileImage, country} = req.body;
-   // const { _id: createdBy } = req.user;
 
     const author = new Author({
       name,

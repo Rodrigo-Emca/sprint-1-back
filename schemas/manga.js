@@ -2,24 +2,28 @@ import Joi from 'joi-oid';
 
 const schema = Joi.object({
  
-    company_id: Joi
-        .objectId(),
+
     title: Joi
         .string()
         .required()
         .min(3)
-        .max(30),
-    cover_photo: Joi
-        .string()
-        .required(),
+        .max(30)
+        .message({
+            'string.min': 'minimo 3 caracteres',
+        }),
+        
+
     description: Joi
         .string()
         .required()
-        .min(20)
-        .max(200),
-    category_id: Joi
-        .objectId()
-        .required(),
+        .min(10)
+        .max(200)
+        .messages({
+            'string.min': 'minimo 3 caracteres',
+        }),
+        category: Joi
+        .string()
+        .required()
 
 
 })
@@ -33,3 +37,4 @@ export default schema
  "description": "bla bla",
  "category_id":"63fe8112f09373806fd89fe5"
 } */
+

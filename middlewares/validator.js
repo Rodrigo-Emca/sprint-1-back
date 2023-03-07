@@ -1,6 +1,3 @@
-import router from "../routes/users.js";
-import schema from '../schemas/mangaCreate.js'
-
 
 const validator = (schema) => [
   (req, res, next) => {
