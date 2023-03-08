@@ -1,14 +1,15 @@
 import express from 'express'
-import controller from '../controllers/auth.js';
+import controller from '../controllers/auth/auth.js';
 import postSchemaSignUp from '../schemas/usersSignUp.js'
 import validator from '../middlewares/validator.js';
-import accountExistsSignUp from '../middlewares/auth/accountExistsSignUp.js'
-import postSchemaSignIn from '../schemas/usersSignIn.js'
-import accountExistsSignIn from '../middlewares/auth/accountExistsSignIn.js'
-import accountHasBeenVerified from '../middlewares/auth/accountHasBeenVerified.js'
-import passwordIsOk from '../middlewares/auth/passwordIsOk.js'
+import accountExistsSignUp from '../middlewares/accountExistsSignUp.js'
 
-import passport from '../middlewares/auth/passport.js'
+import postSchemaSignIn from '../schemas/usersSignIn.js'
+import accountExistsSignIn from '../middlewares/accountExistsSignIn.js'
+import accountHasBeenVerified from '../middlewares/accountHasBeenVerified.js'
+import passwordIsOk from '../middlewares/passwordIsOk.js'
+
+import passport from '../middlewares/passport.js'
 
 let router = express.Router();
 

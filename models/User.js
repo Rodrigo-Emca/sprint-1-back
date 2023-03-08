@@ -17,3 +17,11 @@ let schema = new mongoose.Schema({
 
 let User = mongoose.model('users', schema)
 export default User
+
+/* 
+"name": "prueba g",
+"email": "prueba g",
+"password": "prueba g",
+"photo": "prueba g"
+
+*/
