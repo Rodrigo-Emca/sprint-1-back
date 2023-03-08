@@ -17,6 +17,7 @@ const authorSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+
     country: {
       type: String,
       required: true,
@@ -32,7 +33,7 @@ const authorSchema = new mongoose.Schema(
       trim: true,
     },
     active: {
-      type: Boolean,
+     type: Boolean,
      required: true,
      default: true,
     },

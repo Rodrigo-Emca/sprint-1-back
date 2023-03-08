@@ -14,7 +14,6 @@ const { show } = mostrar_categoriescontroller
 const { create } = create_manga
 
 
-
 router.get("/", show)
 //router.post("/", validator(mangaCreate),validator_title,is_active,create) //RUTA CON VALIDADOR DEL M06
 router.post("/", validator(schema),validator_title,create)

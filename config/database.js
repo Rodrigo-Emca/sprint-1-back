@@ -1,9 +1,7 @@
 import mongoose from "mongoose";
 
-// aqui me traigo la uri de la base de datos
 const DB_URI = process.env.MONGO;
 
-// Aquí me conecto a la base de datos
 mongoose.set('strictQuery', false);
 mongoose.connect(DB_URI, {
   useNewUrlParser: true,
@@ -15,4 +13,3 @@ mongoose.connect(DB_URI, {
 });
 
 export default mongoose.connection;
-
