@@ -2,6 +2,7 @@ import express from 'express';
 import Manga from '../models/Manga.js';
 import Author from '../models/Author.js';
 import isPropertyOf from '../middlewares/authors/is_property_of.js';
+import get_mangas_from_author from '../controllers/authors/mangas/get_mangas_from_author.js';
 
 let router = express.Router();
 
@@ -42,5 +43,14 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: 'Error creating manga' });
   }
 });
+
+// GET mangas from author
+router.get('/authors/:author_id', isPropertyOf('author'), get_mangas_from_author);
+
+
+export default router;
+
+
+
 
 

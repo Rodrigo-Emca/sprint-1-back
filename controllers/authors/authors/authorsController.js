@@ -1,5 +1,5 @@
-import Author from '../../models/Author.js';
-import authorSchema from '../../schemas/authors.js';
+import Author from '../../../models/Author.js';
+import authorSchema from '../../../schemas/authors.js';
 
 export const createAuthor = async (req, res) => {
   try {
