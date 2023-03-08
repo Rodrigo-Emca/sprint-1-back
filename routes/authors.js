@@ -16,8 +16,3 @@ router.post('/', validator(postSchema), createAuthor);
 
 
 export default router;
-
-
-
-
-

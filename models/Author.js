@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-
 const authorSchema = new mongoose.Schema(
   {
     name: {
@@ -27,7 +26,6 @@ const authorSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-
     imageUrl: {
       type: String,
       required: true,

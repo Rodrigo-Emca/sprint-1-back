@@ -15,3 +15,4 @@ mongoose.connect(DB_URI, {
 });
 
 export default mongoose.connection;
+
