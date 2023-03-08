@@ -25,4 +25,3 @@ app.use('/', indexRouter);
 
 export default app
 
-

@@ -14,7 +14,10 @@ const createAuthor = async (req, res) => {
     const createdBy = req.user._id;
     const author = new Author({
       name,
+      lastName,
       birthdate,
+      city,
+      country,
       createdBy,
       active: true,
     });
