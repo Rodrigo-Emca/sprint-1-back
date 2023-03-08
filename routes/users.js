@@ -13,7 +13,7 @@ import passport from '../middlewares/passport.js'
 
 let router = express.Router();
 
-const {sign_up, sign_in, sign_out} = controller
+const {sign_up, sign_in, sign_out, signintoken} = controller
 
 /* GET users listing. */
 router.get('/', (req, res, next) => {

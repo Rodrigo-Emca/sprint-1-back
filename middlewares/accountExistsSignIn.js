@@ -4,6 +4,7 @@ async function accountExistsSignIn(req,res,next) {
     const user = await User.findOne({email: req.body.email})
     if (user) {
         req.user = {
+            name: user.name,
             id: user._id,
             email: user.email,
             photo: user.photo,
@@ -15,10 +16,9 @@ async function accountExistsSignIn(req,res,next) {
         }
     return next()
     }
-    // return res.status(400).send('¡El usuario no existe!')
     return res.status(400).json({
         success: false,
-        message: '¡Credenciales incorrectas!' //Usamos el mismo mensaje para proteger mail/contraseña del usuario.
+        message: '¡Credenciales incorrectas!'
         })
 }
 
