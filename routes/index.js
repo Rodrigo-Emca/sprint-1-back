@@ -1,6 +1,8 @@
 import userRouter from './users.js'
 import chaptersRouter from './chapters.js'
 import authorRouter from './authors.js';
+import mangaRouter from './mangas.js'
+
 
 
 import express from 'express';
@@ -14,7 +16,9 @@ router.get('/', function(req, res, next) {
 
 router.use('/users', userRouter)
 router.use('/chapters', chaptersRouter)
+router.use('/auth', userRouter)
 router.use('/api/authors', authorRouter);
+router.use('/mangas', mangaRouter)
 
 router.use('/auth', userRouter)
 

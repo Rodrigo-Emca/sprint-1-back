@@ -10,7 +10,7 @@ import passwordIsOk from '../middlewares/auth/passwordIsOk.js'
 
 import passport from '../middlewares/auth/passport.js'
 
-let router = express.Router();
+let router = express.Router()
 
 const {sign_up, sign_in, sign_out, signintoken} = controller
 
@@ -18,11 +18,31 @@ const {sign_up, sign_in, sign_out, signintoken} = controller
 router.get('/', (req, res, next) => {
   return res
     .send('Aqui deberían aparecer todos los usuarios.')
+    .send('Aqui deberían aparecer todos los usuarios.')
     .status(200)
 });
 
 //POST auths listing:
 
+router.post('/signup', 
+  validator(postSchemaSignUp),
+  accountExistsSignUp,
+  sign_up
+)
+
+router.post('/signin', 
+  validator(postSchemaSignIn),
+  accountExistsSignIn,
+  accountHasBeenVerified,
+  passwordIsOk,
+  sign_in
+)
+
+router.post('/signout',
+  passport.authenticate('jwt',{session:false}),
+  sign_out
+//POST auths listing:
+)
 router.post('/signup', 
   validator(postSchemaSignUp),
   accountExistsSignUp,
