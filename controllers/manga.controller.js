@@ -21,20 +21,25 @@ const controller = {
   },
   get_mangas: async (req, res, next) => {
     let consultas = {}
-
     let pagination = {
       page: 1, 
-      limit: 6 
+      limit: 10
     }
-
+    
     if (req.query.title) {
       consultas.title = new RegExp(req.query.title.trim(),'i')
-
     }
-    if (req.query.category) {
-      consultas.category = new RegExp(req.query.category.trim(),'i')
 
+        /* if (req.query.category) {
+          let categ = req.query.category.split(',')
+          console.log(categ)
+          consultas.category_id = req.query.category
+        } */
+
+    if (req.query.category_id){
+      consultas.category_id = req.query.category_id.trim()
     }
+        
     if (req.query.page) {
       pagination.page = req.query.page
     }
@@ -43,23 +48,21 @@ const controller = {
     }
     try {
       let all = await Manga.find(consultas)
-      .select('title category -_id')
-      .sort({ title: 1, /* category: -1 */ })
-      
+      .select('title category_id -_id')
+      .sort({ title: 1})  
       .skip( pagination.page > 0 ? (pagination.page-1)*pagination.limit : 0 )
       .limit( pagination.limit > 0 ? pagination.limit : 0 )
-
+    
       return res
       .status(200)
       .json({ mangas: all})
     }
     catch(err) {
       next(err)
-    }
+    } 
   }
-
 }
 
 export default controller
-
-//http://localhost:8080/mangas/read?title= m&category= ma
+//http://localhost:8000/mangas/read?title= n&category= s
+//http://localhost:8000/mangas/read?title= t&category=6403f3055c8203c8d0eace85
