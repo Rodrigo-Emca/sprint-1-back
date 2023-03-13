@@ -1,28 +1,36 @@
-const Manga = require('../models/manga');
-import protectData from '../utils/protectData.js';
+import Manga from '../../models/Manga.js';
 
-const get_mangas_from_author = async (req, res) => {
+const controller = {
+  get_mangas_from_author: async (req, res) => {
+  console.log(req.params.author_id)
   try {
-    const author_id = req.params.author_id;
-    let new_query = true;
-    if (req.query.new === 'false') {
-      new_query = false;
-    }
+    console.log(req.params)
+    const authorId = req.params.author_id;
+    const { new: isNew = true } = req.query;
+  
+    let mangas = await Manga.find({author_id: req.params.author_id}).select('title category_id cover_photo')
+    console.log(mangas)
+   /* if (isNew) {
+      console.log('if')
+    
+     
+     
+        
+        
+    } else {
+      console.log('else')
+      mangas = await Manga.find({ author_id: authorId })
+        .sort('published_date')
+        .limit(4);
+    } */
 
-    const mangas = await Manga.find({ author: author_id }).sort({ release_date: new_query ? 'desc' : 'asc' }).limit(4);
-    if (mangas.length < 4) {
-      mangas = await Manga.find({ author: author_id }).sort({ release_date: new_query ? 'desc' : 'asc' });
-    }
 
-    const protectedMangas = mangas.map((manga) => {
-      return protectData(manga.toObject());
-    });
 
-    res.json(protectedMangas);
+    res.status(200).json({ success: true, data: mangas });
   } catch (error) {
     console.error(error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).json({ success: false, error: error.message });
   }
+}
 };
-
-export default get_mangas_from_author;
+export default controller;
