@@ -1,26 +1,24 @@
-import mongoose from "mongoose";
-import Author from "../../../models/Author.js";
+import Author from "../../models/Author.js";
+import User from "../../models/User.js";
 
-// para buscar autor a partir de su id
- async function getOneAuthor(req, res) {
-    const authorId = req.params.id;
-    try{
-        const author = await Author.findById(authorId);
-        if (!author || !author.active) {
-            return res.status(404).json({ message: 'Author not found or inactive' });
-    }
-    const safeAuthor = { 
-        _id: author._id,
-        name: author.name,
-        email: author.email
-    }
-       res.status(200).json(safeAuthor);
-    
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error validating author' });
+async function getOneAuthor(req, res) {
+  try {
+    const author_id = req.params.id;
+    const author = await Author.findById(author_id);
 
+    if (!author) {
+      return res.status(404).send("Author not found");
     }
+
+    // Proteger los datos sensibles antes de enviarlos en la respuesta
+    delete author.password;
+    delete author.token;
+
+    res.send(author);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
 }
 
 export default getOneAuthor;
