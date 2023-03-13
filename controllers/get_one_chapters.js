@@ -13,9 +13,6 @@ const controllerChapter = {
             }
         }
         catch(error){
-            res.status(404).json({
-                message:'The chapter does not exist',
-            })
             next(error)
         }
     }
