@@ -54,6 +54,11 @@ const controller = {
       .skip( pagination.page > 0 ? (pagination.page-1)*pagination.limit : 0 )//.skip--corta desde donde
       .limit( pagination.limit > 0 ? pagination.limit : 0 )//hasta donde
       .populate("category_id", "name -_id")//accede al name de la categoria
+      
+     /*  populate({
+        path: 'category_id',
+        match: {name: 'shonen'}
+      }) */
 
       return res.status(200).json({ 
         success: true,
